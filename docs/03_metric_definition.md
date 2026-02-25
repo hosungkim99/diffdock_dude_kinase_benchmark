@@ -31,15 +31,18 @@ Let:
 
 - n_pos = number of positives
 - n_neg = number of negatives
-- R_i = rank of the i-th positive sample
+- R_i = rank of each active ligand (1 = highest score)
 
 Then:
 
-\[
-\text{AUC} =
-\frac{\sum R_i - \frac{n_{pos}(n_{pos}+1)}{2}}
-{n_{pos} \cdot n_{neg}}
-\]
+AUC =
+( sum(R_i) - n_pos*(n_pos+1)/2 )
+/ ( n_pos * n_neg )
+
+Interpretation:
+  - 1.0 → perfect ranking
+  - 0.5 → random ranking
+  - <0.5 → inverted ranking
 
 Ties are handled by assigning average ranks.
 
@@ -71,19 +74,15 @@ Interpretation:
 
 ## 4. Normalized Enrichment Factor (nEF)
 
-Maximum possible enrichment at fraction p:
+Maximum possible enrichment at k% is:
 
-\[
-EF_{max}(p) = \min\left(\frac{1}{p}, \frac{1}{\text{base\_rate}}\right)
-\]
+EF_max = min(n, N_k) / N_k ÷ (n / N)
 
 Normalized EF:
 
-\[
-nEF = \frac{EF - 1}{EF_{max} - 1}
-\]
+nEF@k% = EF@k% / EF_max
 
-Clipped to [0, 1].
+0 ≤ nEF ≤ 1.
 
 Interpretation:
 
@@ -95,19 +94,15 @@ Interpretation:
 ## 5. LogAUC (Rank-based)
 
 Defined over early portion of ranking.
+LogAUC emphasizes early enrichment by integrating TPR over a logarithmic FPR scale.
 
 Let:
-
-- x_i = i / N
-- TPR(x) = cumulative true positive rate
+  - FPR = false positive rate
+  - TPR = true positive rate
 
 For cutoff \( \alpha \) (default 0.1):
 
-\[
-\text{LogAUC} =
-\frac{\int_{0}^{\alpha} TPR(x)\, d\log_{10}(x)}
-{\log_{10}(\alpha) - \log_{10}(1/N)}
-\]
+LogAUC = ∫ TPR d(log10(FPR))
 
 Computed via trapezoidal rule over log-scaled x-axis.
 
@@ -151,7 +146,7 @@ This centers random performance at 0.
 
 ## 7. BEDROC
 
-BEDROC emphasizes early retrieval using exponential weighting.
+BEDROC (Boltzmann-Enhanced Discrimination of ROC) emphasizes early ranking.
 
 Let:
 
@@ -170,11 +165,8 @@ RIE = \frac{1}{n}
 
 BEDROC:
 
-\[
-BEDROC =
-\frac{RIE - RIE_{min}}
-{RIE_{max} - RIE_{min}}
-\]
+BEDROC = normalization ×
+         sum_i exp(-alpha * r_i / N) for actives
 
 Clipped to [0,1].
 
