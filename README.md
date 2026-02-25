@@ -412,21 +412,3 @@ If this pipeline is used, please cite:
 
 ---
 
-# 다음 단계 제안
-
-이제 공개용으로 한 단계 더 가려면:
-
-1. environment.yml 생성
-2. example config 파일 정리
-3. figures/ 폴더에 실제 결과 그림 추가
-4. repo public 전환
-
----
-
-원하면 다음으로:
-
-* 🔥 environment.yml 자동 생성
-* 🔥 공개용 논문화 Abstract 작성
-* 🔥 포트폴리오용 한 페이지 요약 PDF 구조 설계
-
-중 어떤 걸 진행할지 선택해라.
