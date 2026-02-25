@@ -1,0 +1,115 @@
+이 txt 파일은 전체적인 pipeline 구조 설명과 사용될 스크립트를 소개하는 txt이다.
+
+0. Inference 완료 상태
+이미 존재해야 하는 것
+dude_raw/$TARGET/
+ ├─ receptor.pdb
+ ├─ crystal_ligand.mol2
+ ├─ results/
+ ├─ logs/
+
+1. Score table 생성
+1-1. make_diffdock_score_table.py
+inputs 
+- results/{actives, decoys}
+- confidence score files(sdf)
+
+2. Inference Error parsing
+parse_inference_err.py
+inputs
+- logs/diffdock_*.err
+output
+- fail.txt
+- skip_test_missing.txt
+- skip_confidence_missing.txt
+
+3. COMdist 계산
+compute_comdist.py
+선택 옵션 
+- actives only
+- actives + decoys
+output
+- {target}_comdist_{split}.csv
+- comist_all.csv
+
+4. Master table 생성(핵심 통합 테이블)
+build_master_table.py
+inputs
+- diffdock_scores_rank1.csv
+- inference_status_err.csv
+- comdist_all.csv
+- receptor.pdb
+- crystal_ligand.mol2
+output : master_table.csv
+master_table의 column : 
+target
+ligand_id
+label
+success
+status
+confidence
+pocket_in
+frac_atoms_within_4A
+min_dist_to_pocket_A
+COMdist_A
+clash_count
+
+5. Metrics 계산
+eval_dude_metrics.py
+input : master_table.csv
+output : metrics.json
+metrics.json에 포함된 metrics :
+ROC_AUC
+LogAUC
+BEDROC
+EF@1,5,10%
+nEF
+clash_rate
+pocket_in_rate
+
+6. Calibration 계산
+build_calibration_table.csv
+input : master_table.csv
+outputs
+- calibration_table_diffdock_2.csv : label 기반 calibration
+- calibration_summary_diffdock_2.csv : Pose accuracy 기반 calibration(COMdist threshold)
+
+7. Target Summary
+built_metrics_summary.py
+inputs
+- master_table.csv
+- metrics.json
+- inference_status_err.csv
+- calibration_summary.csv(option)
+output : metrics_summary_all_diffdock_2.csv
+metrics_summary_all_diffdock_2.csv 구성 column
+coverage_rate
+fail_rate
+skip_rate
+retry_rate
+ROC_AUC
+LogAUC
+BEDROC
+EF_1pct
+...
+mean_COMdist
+active_mean_COMdist
+top1_mean_COMdist
+COMdist2rate
+
+
+실전용 권장 실행 순서
+1. make_diffdock_score_table.py
+2. parse_inference_err.py
+3. compute_comdist.py
+4. build_master_table.py
+5. eval_dude_metrics.py
+6. build_calibration_table.py
+7. build_metrics_summary.py
+
+반드시 확인해야할 것
+1. master_table.csv row 수 == score table row 수
+2. success + fail + skip == 전체 ligand 수
+3. COMdist_A NaN 비율 확인
+4. BEDROC ∈ [0,1]
+5. coverage_rate = success rate
