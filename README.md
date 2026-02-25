@@ -1,414 +1,291 @@
 
-
 ---
 
 # DiffDock DUD-E Kinase Benchmark Pipeline
 
-## Overview
+A fully reproducible benchmarking framework for evaluating **DiffDock** on the **DUD-E kinase subset (26 targets)**.
 
-This repository provides a fully automated benchmarking pipeline for evaluating **DiffDock** on the **DUD-E kinase subset (26 targets)**.
+This repository implements a structured, multi-stage evaluation pipeline including:
 
-The pipeline covers:
+* Inference stability tracking
+* Multi-layer structural QC
+* COM-based pose validation
+* DUD-E enrichment metrics (EF / nEF / ROC / LogAUC)
+* Cross-target aggregation and calibration analysis
 
-* Receptor preprocessing
-* Target-wise ligand CSV generation
-* DiffDock inference
-* Post-processing & QC
-* Metric computation (EF, nEF, LogAUC, ROC-AUC)
-* Pose quality evaluation (COM distance)
-* Target-level aggregation
-* Calibration analysis
-* Final benchmark summary table generation
-
-The objective is to provide a **reproducible, large-scale, structure-aware evaluation framework** for generative docking models.
+This project is designed not merely to run DiffDock, but to provide a **rigorous evaluation protocol** for structure-aware virtual screening.
 
 ---
 
-## Key Contributions
+# 1. Project Overview
 
-* 🔁 Fully automated multi-stage benchmarking pipeline
-* 📊 Integrated enrichment + pose-quality evaluation
-* 🧪 Explicit skip/fail taxonomy from inference logs
-* 🧮 Target-level master table aggregation
-* 📈 Calibration analysis (confidence vs correctness)
-* 🏗 Modular structure (run / postprocess / eval / qc / aggregate)
+Virtual screening benchmarks often report only enrichment metrics.
+This framework extends evaluation by integrating:
 
----
+1. **Inference Stability Analysis** (fail / skip / retry taxonomy)
+2. **Structural Validity Checks** (pocket containment, clash detection)
+3. **Pose Accuracy Proxy** (COM ≤ 2Å)
+4. **Early Enrichment Metrics**
+5. **Confidence Calibration Analysis**
+6. **Cross-target aggregation**
 
-# Pipeline Overview
+Pipeline:
 
-The complete pipeline consists of the following ordered stages:
-
----
-
-## Stage 1 — Receptor Preprocessing
-
-### 1.1 Residue Naming Normalization
-
-Normalize non-canonical residue names in `receptor.pdb`:
-
-```
-HID / HIE / HIP → HIS  
-TPO → THR  
-SEP → SER  
-...
-```
-
-Script:
-
-```
-scripts_2/run/standardize_pdb_resnames.py
-```
-
-Purpose:
-
-* Prevent DiffDock inference failure due to residue naming inconsistencies.
-
----
-
-## Stage 2 — Ligand CSV Generation
-
-For each target and each split:
-
-* `actives`
-* `decoys`
-
-Create a CSV file compatible with DiffDock inference.
-
-Script:
-
-```
-scripts_2/run/create_csv_with_sdf_normal.py
-```
-
-Output:
-
-```
-{target}_actives.csv
-{target}_decoys.csv
+```text
+receptor normalization
+→ CSV generation (actives / decoys)
+→ DiffDock inference
+→ postprocess (retry + score table)
+→ QC (multi-layer)
+→ COM distance evaluation
+→ DUD-E metrics
+→ aggregate (master table + calibration)
 ```
 
 ---
 
-## Stage 3 — DiffDock Inference
+# 2. Installation
 
-Run DiffDock per target and split.
+## 2.1 Requirements
 
-Script:
+* Python ≥ 3.9
+* RDKit
+* NumPy
+* Pandas
+* SciPy
+* DiffDock (installed separately)
 
-```
-scripts_2/run/run_diffdock_target_simple.sh
-```
+Optional:
 
-Output structure:
-
-```
-results/
-  └── {target}/
-        ├── actives/
-        ├── decoys/
-        └── logs/
-```
-
-Rank-1 pose and confidence score are used for evaluation.
+* SLURM (for cluster execution)
 
 ---
 
-## Stage 4 — Postprocessing
+## 2.2 Clone Repository
 
-Parse inference outputs and extract:
-
-* rank1 pose
-* confidence score
-* missing / skipped / failed cases
-
-Core logic:
-
-```
-src/inference/parse_logs.py
-src/qc/postprocess.py
+```bash
+git clone https://github.com/<your-id>/diffdock-dude-benchmark.git
+cd diffdock-dude-benchmark
 ```
 
 ---
 
-## Stage 5 — Score Table Construction
+## 2.3 Environment Setup (Example)
 
-Generate per-target score table:
-
-Script:
-
-```
-make_diffdock_score_table.py
-```
-
-Output:
-
-```
-diffdock_scores_rank1.csv
-```
-
-Columns:
-
-* ligand_id
-* label (1=active, 0=decoy)
-* confidence_score
-* inference_status
-
----
-
-## Stage 6 — Metric Computation
-
-Compute enrichment-based metrics:
-
-Script:
-
-```
-eval_dude_metrics.py
-```
-
-Metrics:
-
-* EF@1%
-* EF@5%
-* EF@10%
-* nEF@k%
-* ROC-AUC
-* LogAUC
-
-Output:
-
-```
-metrics_summary.csv
+```bash
+conda create -n diffdock_bench python=3.9
+conda activate diffdock_bench
+pip install -r requirements.txt
 ```
 
 ---
 
-## Stage 7 — Pose Quality Evaluation (COM Distance)
+# 3. Repository Structure
 
-Evaluate structural correctness:
-
-Script:
-
+```text
+.
+├── README.md
+├── docs/
+│   ├── benchmark_protocol.md
+│   ├── metrics_definition.md
+│   ├── qc_design.md
+│   └── calibration_analysis.md
+│
+├── scripts_2/
+│   ├── run/
+│   ├── postprocess/
+│   ├── eval/
+│   └── aggregate/
+│
+├── src/
+│   ├── io/
+│   ├── postprocess/
+│   ├── eval/
+│   ├── qc/
+│   └── aggregate/
+│
+└── outputs/
+    └── <target>/
 ```
-src/geometry/comdist.py
-```
 
-Criterion:
+### Directory Roles
 
-```
-COM distance ≤ 2 Å  → Pose hit
-```
-
-Outputs:
-
-* COM distance per ligand
-* Hit@K
-* SR@p%
+* **scripts_2/** → executable pipeline scripts
+* **src/** → core logic modules
+* **docs/** → detailed technical specification
+* **outputs/** → per-target results
 
 ---
 
-## Stage 8 — Target-Level Aggregation
+# 4. Pipeline Diagram
 
-### 8.1 Master Table
-
-Script:
-
-```
-build_master_table.py
-```
-
-Aggregates:
-
-* enrichment metrics
-* pose metrics
-* coverage
-* skip/fail statistics
-
-Output:
-
-```
-master_table.csv
-```
-
----
-
-### 8.2 Calibration Table
-
-Script:
-
-```
-build_calibration.py
-```
-
-Analyzes:
-
-* confidence vs correctness
-* Expected Calibration Error (ECE)
-* reliability diagram components
-
-Output:
-
-```
-calibration_table.csv
-```
-
----
-
-### 8.3 Final Metric Summary
-
-Script:
-
-```
-build_metrics_summary2.py
-```
-
-Produces:
-
-* global summary across 26 kinase targets
-* performance distribution
-* difficulty categorization
-
----
-
-# Repository Structure
-
-```
-src/
-  aggregate/
-  geometry/
-  inference/
-  io/
-  metrics/
-  qc/
-
-scripts_2/
-  run/
-  eval/
-  aggregate/
-  qc/
-
-configs/
+```text
+┌─────────────────────────────┐
+│ Receptor Normalization      │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ CSV Generation              │
+│ (actives / decoys)          │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ DiffDock Inference          │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ Postprocess                 │
+│ - retry analysis            │
+│ - score table generation    │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ Multi-layer QC              │
+│ - pocket containment        │
+│ - clash detection           │
+│ - sanity checks             │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ COM Distance Evaluation     │
+│ (Hit: COM ≤ 2Å)             │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ DUD-E Metrics               │
+│ EF / nEF / ROC / LogAUC     │
+└──────────────┬──────────────┘
+               ↓
+┌─────────────────────────────┐
+│ Aggregate                   │
+│ master table / calibration  │
+└─────────────────────────────┘
 ```
 
 ---
 
-# Metric Definitions
+# 5. Execution Example (Single Target: ABL1)
 
-## Enrichment Factor (EF@p%)
+### 5.1 Run Inference
 
-Let:
-
-* ( N ) = total ligands
-* ( A ) = total actives
-* ( n_p = \lfloor p \cdot N \rfloor )
-* ( a_p ) = actives in top ( n_p )
-
-[
-EF@p% = \frac{a_p / n_p}{A / N}
-]
-
----
-
-## Normalized EF (nEF)
-
-[
-nEF = \frac{EF - 1}{EF_{max} - 1}
-]
-
----
-
-## LogAUC
-
-Area under semi-log enrichment curve.
-
----
-
-## COM Distance
-
-For predicted pose center of mass ( c_{pred} ) and crystal pose ( c_{true} ):
-
-[
-d_{COM} = | c_{pred} - c_{true} |_2
-]
-
-Pose hit condition:
-
-[
-d_{COM} \le 2\ \text{Å}
-]
-
----
-
-# Failure Taxonomy
-
-Inference failures categorized as:
-
-* **Failed** → e.g., "No edges and no nodes"
-* **Skipped** → dataset mismatch / confidence dataset missing
-* **Missing** → no output file generated
-
-Retry rate:
-
-[
-\text{retry rate} = \frac{\text{failed} + \text{skipped}}{\text{total ligands}}
-]
-
----
-
-# Reproducibility
-
-* Fixed rank1 pose
-* Confidence-based ranking
-* Deterministic evaluation scripts
-* Explicit log parsing
-* Target-wise isolation
-
----
-
-# Data
-
-This repository does **not** include DUD-E raw datasets.
-
-Users must download DUD-E separately and configure:
-
-```
-DUDE_ROOT=/path/to/dude_raw
+```bash
+bash scripts_2/run/run_diffdock_target_simple.sh abl1
 ```
 
 ---
 
-# Limitations
+### 5.2 Postprocess
 
-* Receptor treated as rigid (DiffDock default)
-* No side-chain flexibility modeling
-* COM distance used instead of full RMSD for pose evaluation
-* Benchmark limited to kinase subset
-
----
-
-# Citation
-
-If this pipeline is used, please cite:
-
-```
-@misc{diffdock_dude_kinase_benchmark,
-  author = {Hosung Kim},
-  title  = {DiffDock DUD-E Kinase Benchmark Pipeline},
-  year   = {2026},
-  url    = {https://github.com/hosungkim99/diffdock_dude_kinase_benchmark}
-}
+```bash
+python scripts_2/postprocess/postprocess_diffdock_results.py --target abl1
+python scripts_2/postprocess/parse_inference_err.py --target abl1
+python scripts_2/postprocess/make_diffdock_score_table.py --target abl1
 ```
 
 ---
 
-# Future Extensions
+### 5.3 QC
 
-* Flexible receptor evaluation
-* Cross-dataset validation (LIT-PCBA)
-* Multi-model comparison (AutoDock-GPU, DiffDock-Pocket)
-* Structural difficulty stratification
+```bash
+python scripts_2/eval/pocket_qc_rank1.py --target abl1
+python scripts_2/eval/qc_rank1_bundle.py --target abl1
+python scripts_2/qc/sanity_check.py --target abl1
+```
+
+---
+
+### 5.4 COM Distance
+
+```bash
+python scripts_2/eval/compute_comdist2.py --target abl1
+```
+
+---
+
+### 5.5 DUD-E Metrics
+
+```bash
+python scripts_2/eval/eval_dude_metrics.py --target abl1
+```
+
+---
+
+### 5.6 Aggregate
+
+```bash
+python scripts_2/aggregate/build_master_table.py
+python scripts_2/aggregate/build_metrics_summary2.py
+python scripts_2/aggregate/build_calibration.py
+```
+
+---
+
+# 6. Example Result Snapshot (ABL1)
+
+### Inference Stability
+
+* Actives: 295
+* Decoys: 10,885
+* Retry tracked explicitly (fail + skip)
+
+### Enrichment
+
+* ROC-AUC ≈ 0.78
+* EF@1% ≈ 7–8
+* Early enrichment significantly above random baseline
+
+### Structural QC
+
+* Pocket containment evaluated
+* Clash detection applied
+* Rank1 pose COM ≤ 2Å used as hit proxy
+
+### Calibration
+
+* Confidence binning analysis
+* Reliability assessment across targets
+
+---
+
+# 7. Reproducibility Principles
+
+* All evaluation parameters stored in config files
+* No silent filtering of failures
+* Retry explicitly logged
+* QC separated from metric computation
+* Calibration analyzed post-hoc
+
+This framework enables transparent and reproducible benchmarking of generative docking models.
+
+---
+
+# 8. Documentation
+
+Detailed protocol and metric definitions are provided in:
+
+```text
+docs/
+```
+
+* `benchmark_protocol.md`
+* `metrics_definition.md`
+* `qc_design.md`
+* `calibration_analysis.md`
+
+---
+
+# 9. Intended Use
+
+This repository is suitable for:
+
+* Research benchmarking
+* Model comparison studies
+* Structure-aware evaluation development
+* Reproducible AI-for-drug-discovery pipelines
+* Technical portfolio demonstration
 
 ---
 
 ---
+
 
