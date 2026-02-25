@@ -1,7 +1,3 @@
-좋다.
-아래는 **공개 논문화/포트폴리오용 README 초안**이다.
-그대로 `README.md`에 붙여넣고, 필요 시 수정하면 된다.
-
 ---
 
 # DiffDock DUD-E Kinase Benchmark Pipeline
