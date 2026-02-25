@@ -10,17 +10,14 @@ Let:
 - n = number of actives
 - y_i ∈ {0,1} be the binary label
 - s_i be the confidence score
-- After sorting by descending score: y_sorted
+- y_sorted : After sorting by descending score
 
 ---
 
 ## 1. Base Rate
 
 The base rate (active ratio) is defined as:
-
-\[
-\text{base\_rate} = \frac{n}{N}
-\]
+base_rate = n / N
 
 This represents the fraction of actives in the dataset.
 
@@ -52,24 +49,23 @@ This implementation corresponds to the Mann–Whitney U statistic.
 
 ## 3. Enrichment Factor (EF@k%)
 
-For a top fraction \( p \) (e.g., 1%, 5%, 10%):
+For a top fraction \( k \) (e.g., 1%, 5%, 10%):
 
 Let:
 
-- k = ceil(p · N)
-- hits(p) = number of actives in top k
+- k%          = top fraction of ranked ligands
+- N_k         = floor(k% × N)
+- TP_k        = number of actives within top N_k
 
 Then:
 
-\[
-EF@p = \frac{\frac{hits(p)}{k}}{\frac{n}{N}}
-\]
+EF@k% = (TP_k / N_k) / (n / N)
 
 Interpretation:
 
-- EF = 1 → random performance
-- EF > 1 → early enrichment
-- EF < 1 → worse than random
+- EF@k% > 1 → enrichment over random
+- EF@k% = 1 → random performance
+- EF@k% < 1 → worse than random
 
 ---
 
