@@ -204,6 +204,17 @@ If `missing_policy = drop`:
 
 ---
 
+## 10. Ranking Procedure (Implementation Order)
+
+All metrics follow this pipeline:
+
+1. Load score table
+2. Assign missing scores (bottom policy)
+3. Sort by descending confidence score
+4. Compute cumulative statistics
+5. Compute metrics
+
+
 ## Summary of Metrics Used
 
 Standard metrics:
