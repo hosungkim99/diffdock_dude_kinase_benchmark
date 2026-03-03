@@ -39,7 +39,7 @@ calibration_table_diffdock_2.csv
 | column         | 설명                                       | 비고                        |   |
 | -------------- | ---------------------------------------- | -------------------------- | - |
 | target         | 타겟 이름                                    |                            |   |
-| calib_type     | calibration 기준 (label / pose_accuracy 등) |                            |   |
+| calib_type     | calibration 기준 (label / pose)            |                            |   |
 | bin_id         | confidence 구간 index                      |                            |   |
 | bin_low        | bin 하한                                   |                            |   |
 | bin_high       | bin 상한                                   |                            |   |
