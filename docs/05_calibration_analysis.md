@@ -74,9 +74,9 @@ abs_gap_k = | mean_conf_k - empirical_rate_k |
 
 전체 calibration 오차는 다음과 같이 정의한다.
 
-```
-ECE = sum_k ( (n_k / N) * abs_gap_k )
-```
+$$
+\text{ECE} = \sum_{k=1}^{K} \frac{n_k}{N} \left| \text{Conf}_{\text{mean}, k} - \text{Rate}_{\text{emp}, k} \right|
+$$
 
 * n_k : bin k 샘플 수
 * N   : 전체 샘플 수
