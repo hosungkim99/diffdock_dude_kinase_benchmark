@@ -4,19 +4,7 @@
 본 문서는 DiffDock 기반 DUD-E Kinase 벤치마크의 전체 파이프라인 구조를 기술한다.
 파이프라인은 다음의 6개 Stage로 구성된다.
 
-[
-\textbf{Preprocess}
-\rightarrow
-\textbf{Inference}
-\rightarrow
-\textbf{Postprocess}
-\rightarrow
-\textbf{Quality Control (QC)}
-\rightarrow
-\textbf{Evaluation}
-\rightarrow
-\textbf{Aggregation}
-]
+Preprocess → Inference → Postprocess → Quality Control (QC) → Evaluation → Aggregation
 
 각 Stage는 독립 실행 가능하며, target 단위로 병렬 처리된다.
 
