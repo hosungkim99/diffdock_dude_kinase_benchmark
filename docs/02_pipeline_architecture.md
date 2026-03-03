@@ -18,27 +18,27 @@ DUD-E Raw
   ├── actives_final.sdf
   └── decoys_final.sdf
         ↓
-[Preprocess]
+  [Preprocess]
         ↓
 DiffDock-ready CSV
         ↓
-[Inference]
+   [Inference]
         ↓
 rank1.sdf + confidence score
         ↓
-[Postprocess]
+  [Postprocess]
         ↓
 master_table.csv
         ↓
-[QC]
+      [QC]
         ↓
 COMdist / clash / pocket-in metrics
         ↓
-[Evaluation]
+    [Evaluation]
         ↓
 EF, nEF, ROC-AUC, LogAUC
         ↓
-[Aggregation]
+  [Aggregation]
         ↓
 metrics_summary_all.csv
 calibration_table.csv
@@ -78,7 +78,7 @@ complex_name, protein_path, ligand_path
 
 각 ligand에 대해:
 
-x_i = (protein_t, ligand_{t,i})
+x_i = (protein_t, ligand_(t,i))
 
 ---
 
@@ -165,19 +165,18 @@ retry ratio > 20% 이면 해당 target inference 미완료로 판단.
 
 ## 1. ROC-AUC
 
-[
-\text{AUC} = \int_0^1 TPR(FPR) dFPR
-]
-AUC = 
+AUC = ∫_0^1 TPR(FPR) dFPR
+
+AUC = integral from FPR=0 to 1 of TPR(FPR) dFPR
 
 ## 2. Enrichment Factor
 
-selection fraction ( \chi )
-
 EF_chi = (TP_chi / N_chi) / (A / N)
 
-* TP_\chi: 상위 χ%에서 active 수
-* A: 전체 active 수
+* TP_chi : 상위 chi 비율에서 active 수
+* N_chi : 상위 chi 비율에서 전체 샘플 수
+* A : 전체 active 수
+* N : 전체 샘플 수
 
 ---
 
@@ -194,19 +193,18 @@ EF_chi_max = 1 / chi
 early enrichment 강조:
 
 LogAUC = ∫ TPR(FPR) d(log FPR)
+LogAUC = integral over FPR of TPR(FPR) with respect to log(FPR)
 
 ---
 
 ## 5. BEDROC
 
-[
-BEDROC_\alpha =
-\frac{
-\sum_i e^{-\alpha r_i}
-}{
-R_\alpha
-}
-]
+BEDROC_alpha = (sum_i exp(-alpha * r_i)) / R_alpha
+
+
+* r_i : i번째 active의 rank 기반 위치
+* alpha : early enrichment 강조 파라미터
+* R_alpha : 정규화 상수
 
 ---
 
@@ -230,10 +228,7 @@ R_\alpha
 
 confidence calibration:
 
-[
-\text{abs gap} =
-| \text{mean_confidence} - \text{empirical_rate} |
-]
+abs_gap = | mean_confidence - empirical_rate |
 
 ---
 
@@ -269,15 +264,10 @@ Inference 실패는 다음으로 분류:
 
 각 target은 독립 작업:
 
-[
-T = {t_1, t_2, ..., t_{26}}
-]
+T = {t1, t2, ..., t26}
 
-총 추론 수:
-
-[
-\sum_{t=1}^{26} (N_{actives}^{(t)} + N_{decoys}^{(t)})
-]
+Total_inference =
+sum over t of ( N_actives[t] + N_decoys[t] )
 
 SLURM job array 구조 사용.
 
