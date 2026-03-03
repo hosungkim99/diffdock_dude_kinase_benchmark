@@ -108,11 +108,12 @@
   - `make_diffdock_score_table.py` 스크립트를 통해 rank1 포즈 출력을 기반으로 생성된 `diffdock_scores_rank1.csv`
 - 랭킹 기준:
   - 리간드들은 confidence 점수의 내림차순으로 정렬됨.
-- 활용 지표:
-  - ROC-AUC
-  - EF@k%
-  - nEF
-  - Calibration 분석
+- 평가 지표 계산 시 역할 (Used for):
+  - 추출된 Confidence 점수는 리간드의 랭킹 기준으로 사용되며, 다음 지표들을 계산하는 핵심 입력값으로 활용됨.
+    - ROC-AUC
+    - EF@k%
+    - nEF
+    - Calibration 분석
 
 ---
 
