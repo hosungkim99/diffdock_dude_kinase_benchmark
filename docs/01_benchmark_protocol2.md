@@ -185,8 +185,9 @@ $$
   - atomic ordering mismatch 문제 회피
   - coarse pose correctness 판단에 충분
 - 임계값: **COM ≤ 2 Å**
-- 해석:
-  - 정답(reference) 대비 COM 거리가 2 Å 이하일 경우 포즈가 구조적으로 유효한 것으로 간주함
+- 해석 및 연계 지표:
+  - 정답(reference) 대비 COM 거리가 2 Å 이하일 경우 포즈가 구조적으로 유효한 것(Hit)으로 간주하며, 전체 샘플 중 이 임계값을 통과한 비율은 최종 요약본에서 `COMdist2rate` 지표로 집계됨.
+  - 추가적으로 생성 품질 확인을 위해 `mean_COMdist` (전체 평균), `active_mean_COMdist` (Active 평균), `top1_mean_COMdist` (Rank1 평균) 거리를 추적함.
 - 사용된 스크립트:
   - `compute_comdist2.py`
 
@@ -202,10 +203,10 @@ $$
 - `qc_rank1_bundle.py`
 - `sanity_check.py`
 
-QC 플래그(Flag) 포함 항목:
+QC 플래그(Flag) 및 요약 지표 매핑:
 
-- Steric clash (입체적 충돌)
-- Outside pocket (포켓 이탈)
+- **Steric clash (입체적 충돌):** 단백질 원자와 리간드 원자가 비정상적으로 겹치는지 검사함. 최종 요약본에서 `clash_rate_all` (전체 충돌 비율) 및 `clash_rate_top1pct` (상위 1% 내 충돌 비율)로 집계됨.
+- **Outside pocket (포켓 이탈):** 생성된 포즈가 지정된 결합 포켓 영역 내부에 정상적으로 위치하는지 검사함. 최종 요약본에서 정상 진입 비율인 `pocket_in_rate_all` 및 `pocket_in_rate_top1pct`로 집계됨.
 - Geometric inconsistency (기하학적 불일치 - 해당하는 경우)
 
 출력 결과물:
@@ -222,9 +223,11 @@ QC 플래그(Flag) 포함 항목:
 
 ### 5.1 분류 지표 (Classification Metrics)
 
+전체적인 활성 물질(Active) 분류 성능을 평가합니다.
+
 - ROC-AUC
-- Precision-Recall (해당하는 경우)
-- LogAUC (해당하는 경우)
+- LogAUC
+- BEDROC (초기 탐색 성능에 가중치를 부여한 ROC 지표)
 
 계산 스크립트:
 
@@ -234,10 +237,10 @@ QC 플래그(Flag) 포함 항목:
 
 ### 5.2 초기 탐색 지표 (Early Enrichment Metrics)
 
-- EF@1%
-- EF@5%
-- EF@10%
-- nEF@k%
+가상 탐색 환경에서 상위 최상위권의 타격률(Hit rate)을 평가합니다.
+
+- EF@1%, EF@5%, EF@10%
+- nEF@1%, nEF@5%, nEF@10%
 
 정의: 상세한 평가 지표 정의는 `docs/03_metrics_definition.md`에 제공됩니다.
 
@@ -245,11 +248,26 @@ QC 플래그(Flag) 포함 항목:
 
 ### 5.3 포즈 기반 지표 (Pose-based Metrics)
 
-- Hit(성공) 정의:
-  - COM ≤ 2 Å
-- Hit@K:
-  - [사용되는 경우, K 값 정의]
+생성된 포즈(Pose)의 구조적 정확도와 거리를 평가합니다.
 
+- **COMdist2rate:** 전체 샘플 중 COM ≤ 2 Å 기준을 통과한 성공 비율
+- **평균 COM 거리 지표:**
+  - `mean_COMdist`: 전체 리간드의 평균 COM 거리
+  - `active_mean_COMdist`: 활성 물질(Active)들의 평균 COM 거리
+  - `top1_mean_COMdist`: 상위 1순위(Confidence 최고점) 포즈의 평균 COM 거리
+
+---
+
+### 5.4 포켓 품질 지표 (Pocket QC Metrics)
+
+생성된 포즈가 단백질 포켓 내에 물리적으로 타당하게 위치하는지 평가합니다.
+
+- **Clash Rate (입체적 충돌 비율):**
+  - `clash_rate_all`: 전체 포즈 중 충돌이 발생한 비율
+  - `clash_rate_top1pct`: 상위 1% 포즈 중 충돌이 발생한 비율
+- **Pocket-in Rate (포켓 내부 위치 비율):**
+  - `pocket_in_rate_all`: 전체 포즈 중 포켓 내부에 정상적으로 생성된 비율
+  - `pocket_in_rate_top1pct`: 상위 1% 포즈 중 포켓 내부에 정상적으로 생성된 비율
 ---
 
 ## 6. 데이터 집계 전략 (Aggregation Strategy)
