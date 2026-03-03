@@ -1,12 +1,4 @@
-좋다.
-지금까지 너가 구성한 **run → postprocess → qc → eval → aggregate** 구조, 그리고 DUD-E kinase 26종을 대상으로 한 DiffDock 대량 추론 파이프라인을 기준으로, GitHub에 바로 올릴 수 있는 `docs/02_pipeline_architecture.md` 초안을 정리해준다.
-
-아래 내용은 **GitHub 친화 Markdown 구조** + **연구 수준 설명** + **데이터 흐름 중심 설계**로 작성했다.
-
 ---
-
-# 02_pipeline_architecture.md
-
 # 2. Pipeline Architecture
 
 본 문서는 DiffDock 기반 DUD-E Kinase 벤치마크의 전체 파이프라인 구조를 기술한다.
