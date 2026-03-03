@@ -65,9 +65,7 @@ DiffDock inference에 적합한 입력 형식으로 DUD-E 데이터를 정제한
 비정형 residue 명칭을 canonical residue name으로 변환.
 
 문제:
-[
-\texttt{HIS → HID/HIE}
-]
+HIS → HID / HIE
 와 같은 비표준 residue가 inference 실패를 유발함.
 
 ### 2. Ligand CSV 생성
@@ -80,9 +78,7 @@ complex_name, protein_path, ligand_path
 
 각 ligand에 대해:
 
-[
-x_i = (\text{protein}*t, \text{ligand}*{t,i})
-]
+x_i = (protein_t, ligand_{t,i})
 
 ---
 
@@ -103,21 +99,17 @@ x_i = (\text{protein}*t, \text{ligand}*{t,i})
 
 DiffDock는 다음 확산 과정을 학습한다:
 
-[
-p_\theta(x_{0} \mid x_{T}, t)
-]
+p_theta(x_0 | x_T, t)
 
 여기서
 
-* (x_0) : 최종 ligand pose
-* (x_T) : noise 상태
-* (t) : diffusion time
+* x_0 : 최종 ligand pose
+* x_T : noise 상태
+* t : diffusion time
 
 최종 score:
 
-[
-s_i = \text{confidence}(x_i^{rank1})
-]
+s_i = confidence(rank1_pose_i)
 
 ---
 
@@ -149,15 +141,11 @@ Inference 결과를 정리하여 master table 생성.
 
 ## 1. COM Distance
 
-[
-d_{COM} = | c_{ligand} - c_{pocket} |_2
-]
+d_COM = || c_ligand - c_pocket ||^2
 
 cutoff:
 
-[
-d_{COM} \le 2.0 \text{Å}
-]
+d_COM ≤ 2.0 Å
 
 ## 2. Clash Count
 
@@ -165,9 +153,7 @@ van der Waals overlap 계산.
 
 ## 3. Retry 정의
 
-[
-\text{retry} = \text{failed} + \text{skipped}
-]
+retry = failed + skipped
 
 retry ratio > 20% 이면 해당 target inference 미완료로 판단.
 
@@ -182,35 +168,24 @@ retry ratio > 20% 이면 해당 target inference 미완료로 판단.
 [
 \text{AUC} = \int_0^1 TPR(FPR) dFPR
 ]
+AUC = 
 
 ## 2. Enrichment Factor
 
 selection fraction ( \chi )
 
-[
-EF_\chi =
-\frac{
-\frac{TP_\chi}{N_\chi}
-}{
-\frac{A}{N}
-}
-]
+EF_chi = (TP_chi / N_chi) / (A / N)
 
-* (TP_\chi): 상위 χ%에서 active 수
-* (A): 전체 active 수
+* TP_\chi: 상위 χ%에서 active 수
+* A: 전체 active 수
 
 ---
 
 ## 3. Normalized EF (nEF)
 
-[
-nEF_\chi =
-\frac{EF_\chi}{EF_{\chi}^{max}}
-]
+nEF_chi = EF_chi / EF_chi_max
 
-[
-EF_{\chi}^{max} = \frac{1}{\chi}
-]
+EF_chi_max = 1 / chi
 
 ---
 
@@ -218,11 +193,7 @@ EF_{\chi}^{max} = \frac{1}{\chi}
 
 early enrichment 강조:
 
-[
-LogAUC =
-\int_{\alpha}^{1}
-TPR(FPR) d(\log FPR)
-]
+LogAUC = ∫ TPR(FPR) d(log FPR)
 
 ---
 
