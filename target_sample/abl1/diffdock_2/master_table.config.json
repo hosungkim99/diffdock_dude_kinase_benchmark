@@ -1,0 +1,24 @@
+{
+  "target": "abl1",
+  "dude_root": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw",
+  "scores_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/diffdock_scores_rank1.csv",
+  "comdist_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/COM/comdist_all.csv",
+  "err_status_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/inference_status_err_actives.csv",
+  "receptor_pdb": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/receptor.pdb",
+  "crystal_ligand_mol2": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/crystal_ligand.mol2",
+  "cache_qc_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/_cache_master_qc.csv",
+  "config": {
+    "pocket_radius_A": 6.0,
+    "frac_atoms_within_A": 4.0,
+    "contact_cutoff_A": 4.0,
+    "in_dcenter_A": 8.0,
+    "in_dmin_A": 4.0,
+    "in_contacts_ge": 10,
+    "clash_cutoff_A": 2.0,
+    "status_priority": [
+      "fail",
+      "skip_conf_missing",
+      "skip_test_missing"
+    ]
+  }
+}

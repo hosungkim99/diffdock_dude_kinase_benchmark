@@ -186,12 +186,41 @@ def resolve_ligand_dir(results_root: Path, ligand_id: str, label: Optional[int])
 # -----------------------------
 # Pocket definition
 # -----------------------------
+# def load_protein_heavy_coords_from_pdb(pdb_path: Path) -> np.ndarray:
+#     m = Chem.MolFromPDBFile(str(pdb_path), removeHs=False, sanitize=False)
+#     if m is None or m.GetNumConformers() == 0:
+#         raise RuntimeError(f"Failed to read receptor PDB or no coords: {pdb_path}")
+#     return get_heavy_coords(m)
 def load_protein_heavy_coords_from_pdb(pdb_path: Path) -> np.ndarray:
-    m = Chem.MolFromPDBFile(str(pdb_path), removeHs=False, sanitize=False)
-    if m is None or m.GetNumConformers() == 0:
-        raise RuntimeError(f"Failed to read receptor PDB or no coords: {pdb_path}")
-    return get_heavy_coords(m)
+    coords = []
 
+    with open(pdb_path, "r") as f:
+        for line in f:
+            if not line.startswith(("ATOM", "HETATM")):
+                continue
+
+            parts = line.split()
+            if len(parts) < 8:
+                continue
+
+            atom_name = parts[2].strip().upper()
+            if atom_name.startswith("H"):
+                continue
+
+            try:
+                # 축약형 PDB: ATOM serial atom resname resid x y z
+                x = float(parts[-3])
+                y = float(parts[-2])
+                z = float(parts[-1])
+            except Exception:
+                continue
+
+            coords.append([x, y, z])
+
+    if not coords:
+        raise RuntimeError(f"Failed to read receptor PDB or no coords: {pdb_path}")
+
+    return np.asarray(coords, dtype=float)
 
 def define_pocket_atoms(
     receptor_pdb: Path,

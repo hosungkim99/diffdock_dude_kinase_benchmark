@@ -1,0 +1,2 @@
+rank,ligand_id,label,score,ligand_dir,pose_path,status,d_center,d_min_pocket,n_contacts,min_protein_dist,clash_count,pocket_in,pocket_out_strong,clash_flag
+87,wee1_decoy_001830,0,0.23,/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results/decoys/wee1_decoy_001830,/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results/decoys/wee1_decoy_001830/rank1.sdf,ok,1.3256774175448167,1.5579039636640037,63,1.5579039636640037,2,True,False,True

@@ -16,8 +16,8 @@ set -euo pipefail
 #       [--dude_root PATH] [--diffdock_repo PATH] [--conf_dir PATH] [--conda_env NAME]
 #
 # Examples:
-#   sbatch scripts/run/run_diffdock_target_simple.sh abl1 actives
-#   sbatch scripts/run/run_diffdock_target_simple.sh abl1 decoys --dude_root /path/to/dude_raw
+#   sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh abl1 actives
+#   sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh abl1 decoys --dude_root /path/to/dude_raw
 # -----------------------------
 
 TARGET="${1:-}"

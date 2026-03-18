@@ -1,0 +1,8 @@
+Base rate: 0.0264
+Top100 active rate: 0.2100
+Enrichment x7.96
+Duplicates: 0
+-inf count: 64
+ROC monotonic: True/True
+ROC-AUC: 0.7757
+Adj LogAUC0.001: 17.448

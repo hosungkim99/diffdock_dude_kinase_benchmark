@@ -1,0 +1,5 @@
+rank,ligand_id,label,score,pose_path,status,d_center,d_min_pocket,n_contacts,min_protein_dist,n_clashes,pocket_in,pocket_out_strong,clash_flag
+59,wee1_decoy_006187,0,0.3,/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results/decoys/wee1_decoy_006187/rank1.sdf,ok,0.8548985294490514,1.5776558148087931,93,1.5776558148087931,1,True,False,True
+85,wee1_decoy_001830,0,0.23,/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results/decoys/wee1_decoy_001830/rank1.sdf,ok,1.3256774175448167,1.5579039636640037,74,1.5579039636640037,2,True,False,True
+90,wee1_decoy_006153,0,0.22,/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results/decoys/wee1_decoy_006153/rank1.sdf,ok,4.2410786294013505,1.5702629907120655,99,1.5702629907120655,1,True,False,True
+96,wee1_decoy_001879,0,0.2,/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results/decoys/wee1_decoy_001879/rank1.sdf,ok,0.5687182433108835,1.4601332302225003,69,1.4601332302225003,1,True,False,True

@@ -1,0 +1,10 @@
+{
+  "scores_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock/diffdock_scores_rank1.csv",
+  "outdir": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock/metrics_rank1",
+  "missing_policy": "drop",
+  "alpha_logauc": 0.1,
+  "alpha_bedroc": 20.0,
+  "dude_fpr_min": 0.001,
+  "dude_random_logauc_pct": 14.462,
+  "dude_ef_fpr": 0.01
+}

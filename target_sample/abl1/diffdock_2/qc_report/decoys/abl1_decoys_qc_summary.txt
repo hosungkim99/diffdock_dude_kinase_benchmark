@@ -1,0 +1,27 @@
+=== DiffDock QC Report (split-level, ok-only) ===
+target: abl1
+split : decoys
+n_ok  : 10821
+
+bucket thresholds:
+  high     : conf > 0.0
+  moderate : -1.5 <= conf <= 0.0
+  low      : conf < -1.5
+
+bucket counts:
+  high     : 180
+  moderate : 2789
+  low      : 7852
+
+confidence stats:
+  min    : -5.8800
+  max    : 0.9500
+  mean   : -2.0856
+  median : -2.0900
+
+outputs:
+  top_csv          : /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/qc_report/decoys/abl1_decoys_top50.csv
+  bottom_csv       : /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/qc_report/decoys/abl1_decoys_bottom50.csv
+  bucket_high_txt  : /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/qc_report/decoys/abl1_decoys_bucket_high.txt
+  bucket_moderate  : /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/qc_report/decoys/abl1_decoys_bucket_moderate.txt
+  bucket_low_txt   : /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/abl1/eval/diffdock_2/qc_report/decoys/abl1_decoys_bucket_low.txt

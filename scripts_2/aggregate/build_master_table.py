@@ -67,7 +67,7 @@ cd /home/deepfold/users/hosung/dataset/DUD-E
 export PYTHONPATH=/home/deepfold/users/hosung/dataset/DUD-E:$PYTHONPATH
 
 DUDE_ROOT=/home/deepfold/users/hosung/dataset/DUD-E/dude_raw
-TARGET="wee1"
+TARGET="mp2k1"
 EVAL=$DUDE_ROOT/$TARGET/eval/diffdock_2
 
 python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/build_master_table.py \

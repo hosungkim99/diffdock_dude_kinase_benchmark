@@ -96,7 +96,7 @@ if __name__ == "__main__":
 실행 예시
 
 # (A) active-only QC: *_actives_scores_ok.csv 기반 Top100 (confidence)
-TARGET="abl1"
+TARGET="mp2k1"
 python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/pocket_qc_rank1.py \
   --target_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET \
   --mode actives_only \

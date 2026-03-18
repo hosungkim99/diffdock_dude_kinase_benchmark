@@ -1,0 +1,35 @@
+{
+  "n_rows_scores_csv": 11180,
+  "n_unique_ligand_id_scores_csv": 11180,
+  "n_duplicates_scores_csv": 0,
+  "label_counts_scores_csv": {
+    "0": 10885,
+    "1": 295
+  },
+  "missing_score_in_scores_csv": 64,
+  "base_rate_active": 0.026386404293381037,
+  "topk": 100,
+  "topk_active_count": 21,
+  "topk_active_rate": 0.21,
+  "topk_enrichment_over_base": 7.95864406779661,
+  "n_neg_inf_in_ranking": 64,
+  "tail20_neg_inf_count": 20,
+  "roc_first": {
+    "fpr": 0.0,
+    "tpr": 0.0
+  },
+  "roc_last": {
+    "fpr": 1.0,
+    "tpr": 1.0
+  },
+  "roc_monotonic_fpr": true,
+  "roc_monotonic_tpr": true,
+  "metrics_snapshot": {
+    "actives": 295,
+    "decoys": 10885,
+    "missing_policy": "bottom",
+    "roc_auc": 0.7757043980598398,
+    "adjusted_logauc0.001": 17.447837403433255,
+    "roc_ef1_percent": 8.47457627118644
+  }
+}

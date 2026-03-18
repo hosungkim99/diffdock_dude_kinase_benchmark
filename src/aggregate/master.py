@@ -37,6 +37,42 @@ class MasterTableConfig:
 # =========================
 # RDKit / geometry helpers
 # =========================
+
+def _protein_coords_from_pdb(path: Path) -> Optional[np.ndarray]:
+    coords = []
+    try:
+        with open(path, "r") as f:
+            for line in f:
+                if not line.startswith(("ATOM", "HETATM")):
+                    continue
+
+                parts = line.split()
+                if len(parts) < 8:
+                    continue
+
+                atom_name = parts[2].upper()
+
+                # hydrogen skip
+                if atom_name.startswith("H"):
+                    continue
+
+                try:
+                    x = float(parts[-3])
+                    y = float(parts[-2])
+                    z = float(parts[-1])
+                except Exception:
+                    continue
+
+                coords.append((x, y, z))
+
+        if not coords:
+            return None
+
+        return np.asarray(coords, dtype=float)
+
+    except Exception:
+        return None
+
 def _mol_from_sdf(path: Path) -> Optional[Chem.Mol]:
     try:
         supp = Chem.SDMolSupplier(str(path), removeHs=False)
@@ -158,13 +194,17 @@ def _define_pocket(
       pocket_coords  : (Nk,3) protein heavy atom coords within pocket_radius of crystal ligand heavy atoms
       pocket_center  : (3,)  centroid of crystal ligand heavy atoms
     """
-    prot_mol = _mol_from_pdb(receptor_pdb)
-    if prot_mol is None:
-        raise RuntimeError(f"Failed to read receptor PDB: {receptor_pdb}")
-    prot_coords = _get_heavy_coords(prot_mol)
-    if prot_coords is None:
-        raise RuntimeError(f"No heavy coords in receptor PDB: {receptor_pdb}")
+    # prot_mol = _mol_from_pdb(receptor_pdb)
+    # if prot_mol is None:
+    #     raise RuntimeError(f"Failed to read receptor PDB: {receptor_pdb}")
+    # prot_coords = _get_heavy_coords(prot_mol)
+    # if prot_coords is None:
+    #     raise RuntimeError(f"No heavy coords in receptor PDB: {receptor_pdb}")
 
+    prot_coords = _protein_coords_from_pdb(receptor_pdb)
+    if prot_coords is None:
+        raise RuntimeError(f"Failed to read receptor PDB: {receptor_pdb}")
+    
     ref = _mol_from_mol2(crystal_ligand_mol2)
     if ref is None:
         raise RuntimeError(f"Failed to read crystal ligand MOL2: {crystal_ligand_mol2}")

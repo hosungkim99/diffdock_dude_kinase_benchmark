@@ -1,0 +1,9 @@
+abl1_decoy_001315,-5.42
+abl1_decoy_003204,-5.74
+abl1_decoy_005461,-4.97
+abl1_decoy_006698,-5.8
+abl1_decoy_007561,-5.21
+abl1_decoy_007900,-5.34
+abl1_decoy_008821,-5.49
+abl1_decoy_010248,-5.88
+abl1_decoy_010720,-5.28

@@ -1,0 +1,68 @@
+{
+  "inputs": {
+    "target_dir": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1",
+    "results_root": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/results",
+    "receptor_pdb": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/receptor.pdb",
+    "pocket_ligand": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/crystal_ligand.mol2",
+    "topk": 100,
+    "mode": "mixed",
+    "ranking_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock_2/metrics_rank1/ranking.csv",
+    "scores_csv": "",
+    "actives_scores_ok_csv": ""
+  },
+  "pocket_definition": {
+    "pocket_radius": 6.0,
+    "pocket_atoms": 123,
+    "pocket_center": [
+      4.298882352941177,
+      54.0800294117647,
+      24.468235294117648
+    ],
+    "pocket_warn_small_atom_count": false
+  },
+  "thresholds": {
+    "contact_cutoff": 4.0,
+    "clash_cutoff": 2.0,
+    "in_dcenter": 8.0,
+    "in_dmin": 4.0,
+    "in_contacts": 10,
+    "out_dcenter": 15.0,
+    "out_dmin": 8.0,
+    "clash_n_clashes_ge": 5,
+    "clash_min_prot_le": 1.6
+  },
+  "counts": {
+    "n_total": 100,
+    "n_ok": 100,
+    "n_missing_pose": 0,
+    "n_bad_pose": 0,
+    "n_pocket_in": 100,
+    "n_pocket_out_strong": 0,
+    "n_clash_flag": 1
+  },
+  "rates": {
+    "pocket_in_rate": 1.0,
+    "pocket_out_strong_rate": 0.0,
+    "clash_flag_rate": 0.01
+  },
+  "by_label_active": {
+    "n": 31,
+    "pocket_in_rate": 1.0,
+    "pocket_out_strong_rate": 0.0,
+    "clash_flag_rate": 0.0,
+    "median_d_center": 1.6293698060267359,
+    "median_d_min_pocket": 2.6685564730767846,
+    "median_n_contacts": 79.0,
+    "median_clash_count": 0.0
+  },
+  "by_label_decoy": {
+    "n": 69,
+    "pocket_in_rate": 1.0,
+    "pocket_out_strong_rate": 0.0,
+    "clash_flag_rate": 0.014492753623188406,
+    "median_d_center": 1.8148410109701238,
+    "median_d_min_pocket": 2.645189312695785,
+    "median_n_contacts": 54.0,
+    "median_clash_count": 0.0
+  }
+}

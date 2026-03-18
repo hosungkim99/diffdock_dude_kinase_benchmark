@@ -1,0 +1,40 @@
+{
+  "input": {
+    "scores_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock_2/diffdock_scores_rank1.csv",
+    "missing_policy": "bottom",
+    "used_ligands": 6371,
+    "dropped_missing_score": 0,
+    "missing_score_total": 6,
+    "actives": 137,
+    "decoys": 6234,
+    "base_rate": 0.021503688588918535
+  },
+  "dude_style": {
+    "adjusted_logauc_fpr_min": 0.001,
+    "adjusted_logauc_random_baseline_percent": 14.462,
+    "adjusted_logauc0.001": 36.769493067407836,
+    "roc_ef_fpr": 0.01,
+    "roc_ef1_percent": 20.437956204379564
+  },
+  "standard": {
+    "roc_auc": 0.9314443515545783
+  },
+  "extra_legacy": {
+    "ef_top1pct": 16.712249087591243,
+    "ef_top1pct_hits": 23,
+    "ef_top1pct_k": 64,
+    "ef_top5pct": 9.329885820195411,
+    "ef_top5pct_hits": 64,
+    "ef_top5pct_k": 319,
+    "ef_top10pct": 7.507642495938495,
+    "ef_top10pct_hits": 103,
+    "ef_top10pct_k": 638,
+    "nef_top1pct": 0.34529645893487326,
+    "nef_top5pct": 0.43841504316817953,
+    "nef_top10pct": 0.7230713884376105,
+    "logauc_rank_over_alpha": 0.17860916465949872,
+    "logauc_alpha": 0.1,
+    "bedroc": 0.5082559346124749,
+    "bedroc_alpha": 20.0
+  }
+}

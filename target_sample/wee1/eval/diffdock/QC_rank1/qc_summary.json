@@ -1,0 +1,39 @@
+{
+  "input_scores_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock/diffdock_scores_rank1.csv",
+  "input_metrics_dir": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock/metrics_rank1",
+  "n_rows_scores_csv": 6371,
+  "n_unique_ligand_id_scores_csv": 6371,
+  "n_duplicates_scores_csv": 0,
+  "label_counts_scores_csv": {
+    "0": 6234,
+    "1": 137
+  },
+  "missing_score_in_scores_csv": 6,
+  "base_rate_active": 0.021503688588918535,
+  "topk": 100,
+  "topk_active_count": 32,
+  "topk_active_rate": 0.32,
+  "topk_enrichment_over_base": 14.881167883211681,
+  "topk_score_mean": 0.3829000000000001,
+  "all_score_mean": -1.2641696779261586,
+  "n_neg_inf_in_ranking": 0,
+  "tail20_neg_inf_count": 0,
+  "roc_first": {
+    "fpr": 0.0,
+    "tpr": 0.0
+  },
+  "roc_last": {
+    "fpr": 1.0,
+    "tpr": 1.0
+  },
+  "roc_monotonic_fpr": true,
+  "roc_monotonic_tpr": true,
+  "metrics_snapshot": {
+    "actives": 137,
+    "decoys": 6228,
+    "missing_policy": "drop",
+    "roc_auc": 0.9313783056504883,
+    "adjusted_logauc0.001": 36.74441140538936,
+    "roc_ef1_percent": 20.437956204379564
+  }
+}

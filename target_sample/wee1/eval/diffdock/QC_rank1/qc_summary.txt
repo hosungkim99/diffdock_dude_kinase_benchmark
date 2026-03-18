@@ -1,0 +1,10 @@
+Base rate (actives/total): 0.0215
+Top100 active rate: 0.3200  (enrichment x14.88)
+Duplicates in scores_csv: 0
+-inf in ranking: 0 (tail20 has 0)
+ROC first: {'fpr': 0.0, 'tpr': 0.0}, last: {'fpr': 1.0, 'tpr': 1.0}
+ROC monotonic fpr/tpr: True/True
+Metrics:
+  ROC-AUC: 0.9314
+  Adjusted LogAUC0.001: 36.744
+  ROC-EF1 (%): 20.44

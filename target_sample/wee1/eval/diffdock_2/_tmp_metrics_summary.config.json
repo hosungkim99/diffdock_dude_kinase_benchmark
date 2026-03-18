@@ -1,0 +1,21 @@
+{
+  "master_table_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock_2/master_table.csv",
+  "err_status_csv": "/home/deepfold/users/hosung/dataset/DUD-E/dude_raw/wee1/eval/diffdock_2/inference_status_err.csv",
+  "retry_csv": "",
+  "config": {
+    "fprs": [
+      0.01,
+      0.05,
+      0.1
+    ],
+    "logauc_fpr_min": 0.001,
+    "dude_random_logauc_pct": 14.462,
+    "bedroc_alpha": 20.0,
+    "clash_count_ge": 5,
+    "top_frac": 0.01
+  },
+  "notes": {
+    "LogAUC": "DUD-style adjusted LogAUC = dude_metrics.dude_logauc_adjusted(fpr_min, random_baseline)",
+    "missing_policy": "summary computes metrics on success==1 only (missing already excluded upstream)."
+  }
+}

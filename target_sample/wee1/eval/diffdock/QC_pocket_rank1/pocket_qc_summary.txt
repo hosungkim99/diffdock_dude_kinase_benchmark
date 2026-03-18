@@ -1,0 +1,7 @@
+Pocket atoms (within 6.0Å of crystal ligand): 150
+Processed Top100: ok=100, missing_pose=0
+Pocket-in rate (ok only): 1.000
+Pocket-out strong rate (ok only): 0.000
+Clash-flag rate (ok only): 0.040
+Active pocket-in rate: 1.000
+Decoy  pocket-in rate: 1.000
