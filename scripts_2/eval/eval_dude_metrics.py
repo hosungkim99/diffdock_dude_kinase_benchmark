@@ -79,10 +79,10 @@ if __name__ == "__main__":
 
 '''
 TARGET="wee1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/eval_dude_metrics.py \
-  --scores_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/diffdock_scores_rank1.csv \
-  --outdir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/metrics_rank1 \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/eval/eval_dude_metrics.py \
+  --scores_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/diffdock_scores_rank1.csv \
+  --outdir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/metrics_rank1 \
   --dude_fpr_min 0.001 \
   --dude_ef_fpr 0.01 \
   --alpha_logauc 0.1 \
