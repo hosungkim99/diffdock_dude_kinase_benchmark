@@ -230,9 +230,9 @@ if __name__ == "__main__":
     main()
     
 '''
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/build_success.py \
-  --failure_csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/failure_and_skipped_cases.csv \
-  --dude_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
-  --out_csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/success_cases.csv \
+python ./dataset/DUD-E/scripts_2/aggregate/build_success.py \
+  --failure_csv ./dataset/DUD-E/aggregate_exports/failure_and_skipped_cases.csv \
+  --dude_root ./dataset/DUD-E/dude_raw \
+  --out_csv ./dataset/DUD-E/aggregate_exports/success_cases.csv \
   --verbose
 '''
