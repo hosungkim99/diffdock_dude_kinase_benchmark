@@ -224,12 +224,12 @@ if __name__ == "__main__":
     main()
 
 '''
-DUDE_ROOT="/home/deepfold/users/hosung/dataset/DUD-E/dude_raw"
+DUDE_ROOT="./dataset/DUD-E/dude_raw"
 TARGET="braf"
 
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/compute_comdist2.py \
+python ./dataset/DUD-E/scripts_2/eval/compute_comdist2.py \
   --dude_root $DUDE_ROOT \
   --target $TARGET \
   --split all \
