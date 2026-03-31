@@ -62,19 +62,19 @@ if __name__ == "__main__":
 '''
 실행 예시(rank1)
 TARGET="abl1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/postprocess/make_diffdock_score_table.py \
-  --actives_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/actives \
-  --decoys_root  /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/decoys \
-  --out_csv      /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/diffdock_scores_rank1.csv \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/postprocess/make_diffdock_score_table.py \
+  --actives_root ./dataset/DUD-E/dude_raw/$TARGET/results/actives \
+  --decoys_root  ./dataset/DUD-E/dude_raw/$TARGET/results/decoys \
+  --out_csv      ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/diffdock_scores_rank1.csv \
   --score_mode rank1
 
 실행 예시(max)
 TARGET="abl1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/postprocess/make_diffdock_score_table.py \
-  --actives_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/actives \
-  --decoys_root  /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/decoys \
-  --out_csv      /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock/diffdock_scores_max.csv \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/postprocess/make_diffdock_score_table.py \
+  --actives_root ./dataset/DUD-E/dude_raw/$TARGET/results/actives \
+  --decoys_root  ./dataset/DUD-E/dude_raw/$TARGET/results/decoys \
+  --out_csv      ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock/diffdock_scores_max.csv \
   --score_mode max
 '''
