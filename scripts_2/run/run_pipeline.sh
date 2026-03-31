@@ -10,8 +10,8 @@ set -u  # undefined variable 방지 (에러 무시는 run_step에서 처리)
 # User Inputs
 ########################################
 EVAL_SUBDIR="${EVAL_SUBDIR:-diffdock_2}"
-DUDE_ROOT="${DUDE_ROOT:-/home/deepfold/users/hosung/dataset/DUD-E/dude_raw}"
-PROJECT_ROOT="${PROJECT_ROOT:-/home/deepfold/users/hosung/dataset/DUD-E}"
+DUDE_ROOT="${DUDE_ROOT:-./dataset/DUD-E/dude_raw}"
+PROJECT_ROOT="${PROJECT_ROOT:-./dataset/DUD-E}"
 
 ########################################
 # Fixed Settings
