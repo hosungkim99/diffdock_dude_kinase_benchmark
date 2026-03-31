@@ -201,7 +201,7 @@ if __name__ == "__main__":
     main()
     
 '''
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/build_failure_skip_exports.py \
-  --dude_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports
+python ./dataset/DUD-E/scripts_2/aggregate/build_failure_skip_exports.py \
+  --dude_root ./dataset/DUD-E/dude_raw \
+  --out_dir ./dataset/DUD-E/aggregate_exports
 '''
