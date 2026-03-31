@@ -215,20 +215,20 @@ if __name__ == "__main__":
 '''
 전체(actives + decoys) 파싱
 TARGET="braf"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/postprocess/parse_inference_err.py \
-  --target_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/postprocess/parse_inference_err.py \
+  --target_dir ./dataset/DUD-E/dude_raw/$TARGET \
   --split all \
-  --out_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/inference_status_err.csv \
-  --out_txt_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/inference_status_lists
+  --out_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/inference_status_err.csv \
+  --out_txt_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/inference_status_lists
 
 only actives만
 TARGET="braf"
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 TARGET="braf"
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/postprocess/parse_inference_err.py \
-  --target_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET \
+python ./dataset/DUD-E/scripts_2/postprocess/parse_inference_err.py \
+  --target_dir ./dataset/DUD-E/dude_raw/$TARGET \
   --split actives \
-  --out_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/inference_status_err_actives.csv
+  --out_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/inference_status_err_actives.csv
 
 '''
