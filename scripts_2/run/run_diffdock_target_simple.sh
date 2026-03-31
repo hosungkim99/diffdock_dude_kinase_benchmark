@@ -16,8 +16,8 @@ set -euo pipefail
 #       [--dude_root PATH] [--diffdock_repo PATH] [--conf_dir PATH] [--conda_env NAME]
 #
 # Examples:
-#   sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh abl1 actives
-#   sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh abl1 decoys --dude_root /path/to/dude_raw
+#   sbatch ./dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh abl1 actives
+#   sbatch ./dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh abl1 decoys --dude_root /path/to/dude_raw
 # -----------------------------
 
 TARGET="${1:-}"
@@ -25,9 +25,9 @@ SPLIT="${2:-}"
 shift 2 || true
 
 # Defaults (환경변수로도 override 가능)
-DUDE_ROOT="${DUDE_ROOT:-/home/deepfold/users/hosung/dataset/DUD-E/dude_raw}"
-DIFFDOCK_REPO="${DIFFDOCK_REPO:-/home/deepfold/users/hosung/work/DiffDock}"
-CONF_DIR="${CONF_DIR:-/home/deepfold/users/hosung/work/DiffDock/workdir/v1.1/confidence_model}"
+DUDE_ROOT="${DUDE_ROOT:-./dataset/DUD-E/dude_raw}"
+DIFFDOCK_REPO="${DIFFDOCK_REPO:-./work/DiffDock}"
+CONF_DIR="${CONF_DIR:-./work/DiffDock/workdir/v1.1/confidence_model}"
 CONDA_ENV="${CONDA_ENV:-diffdock}"
 
 # optional flags parsing
@@ -102,7 +102,7 @@ fi
 
 # conda activate
 # (서버에 따라 conda.sh 경로가 다를 수 있으니 필요 시 수정)
-source /home/deepfold/conda/etc/profile.d/conda.sh
+source ./conda/etc/profile.d/conda.sh
 conda activate "${CONDA_ENV}"
 
 cd "${DIFFDOCK_REPO}"
@@ -118,17 +118,17 @@ echo "[INFO] Done."
 
 # 기본 실행 예시
 # TARGET="abl1"
-# cd /home/deepfold/users/hosung/dataset/DUD-E
+# cd ./dataset/DUD-E
 
-# sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh $TARGET actives
-# sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh $TARGET decoys
+# sbatch ./dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh $TARGET actives
+# sbatch ./dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh $TARGET decoys
 
 # 추가 옵션 사용 예시
 # TARGET="abl1"
-# cd /home/deepfold/users/hosung/dataset/DUD-E
+# cd ./dataset/DUD-E
 
-# sbatch /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh $TARGET actives \
-#   --dude_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
-#   --diffdock_repo /home/deepfold/users/hosung/work/DiffDock \
-#   --conf_dir /home/deepfold/users/hosung/work/DiffDock/workdir/v1.1/confidence_model \
+# sbatch ./dataset/DUD-E/scripts_2/run/run_diffdock_target_simple.sh $TARGET actives \
+#   --dude_root ./dataset/DUD-E/dude_raw \
+#   --diffdock_repo ./work/DiffDock \
+#   --conf_dir ./work/DiffDock/workdir/v1.1/confidence_model \
 #   --conda_env diffdock
