@@ -47,24 +47,24 @@ if __name__ == "__main__":
 실행 예시
 - actives 
 TARGET="abl1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/qc/sanity_check.py \
+python ./dataset/DUD-E/scripts_2/qc/sanity_check.py \
   --target $TARGET --split actives \
-  --receptor_pdb /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/receptor.pdb \
-  --results_dir  /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/actives \
-  --scores_ok_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/actives/$TARGET"_actives_scores_ok.csv" \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/sanity/actives
+  --receptor_pdb ./dataset/DUD-E/dude_raw/$TARGET/receptor.pdb \
+  --results_dir  ./dataset/DUD-E/dude_raw/$TARGET/results/actives \
+  --scores_ok_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/actives/$TARGET"_actives_scores_ok.csv" \
+  --out_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/sanity/actives
 
 - decoys
 TARGET="abl1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/qc/sanity_check.py \
+python ./dataset/DUD-E/scripts_2/qc/sanity_check.py \
   --target $TARGET --split decoys \
-  --receptor_pdb /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/receptor.pdb \
-  --results_dir  /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/decoys \
-  --scores_ok_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/decoys/$TARGET"_decoys_scores_ok.csv" \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/sanity/decoys
+  --receptor_pdb ./dataset/DUD-E/dude_raw/$TARGET/receptor.pdb \
+  --results_dir  ./dataset/DUD-E/dude_raw/$TARGET/results/decoys \
+  --scores_ok_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/decoys/$TARGET"_decoys_scores_ok.csv" \
+  --out_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/sanity/decoys
 
 '''
