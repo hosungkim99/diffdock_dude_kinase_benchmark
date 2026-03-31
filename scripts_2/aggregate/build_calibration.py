@@ -273,15 +273,15 @@ if __name__ == "__main__":
 
     
 '''
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 TARGET="wee1"
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/build_calibration.py \
-  --dude_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
+python ./dataset/DUD-E/scripts_2/aggregate/build_calibration.py \
+  --dude_root ./dataset/DUD-E/dude_raw \
   --eval_subdir diffdock_2 \
   --targets $TARGET \
   --n_bins 20 \
   --binning uniform \
   --pose_cutoff_A 2.0 \
-  --out_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/calibration_table_diffdock_2.csv \
-  --out_summary_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/calibration_summary_diffdock_2.csv
+  --out_csv ./dataset/DUD-E/dude_raw/calibration_table_diffdock_2.csv \
+  --out_summary_csv ./dataset/DUD-E/dude_raw/calibration_summary_diffdock_2.csv
 '''
