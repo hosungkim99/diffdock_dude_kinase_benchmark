@@ -48,23 +48,23 @@ if __name__ == "__main__":
 실행 예시
 actives QC report
 TARGET="abl1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/qc/qc_report.py \
+python ./dataset/DUD-E/scripts_2/qc/qc_report.py \
   --target $TARGET --split actives \
-  --scores_ok_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/actives/$TARGET"_actives_scores_ok.csv" \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/qc_report/actives \
+  --scores_ok_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/actives/$TARGET"_actives_scores_ok.csv" \
+  --out_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/qc_report/actives \
   --top_k 50 --bottom_k 50 \
   --high_thr 0.0 --low_thr -1.5
 
 decoys QC report
 TARGET="abl1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/qc/qc_report.py \
+python ./dataset/DUD-E/scripts_2/qc/qc_report.py \
   --target $TARGET --split decoys \
-  --scores_ok_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/decoys/$TARGET"_decoys_scores_ok.csv" \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/qc_report/decoys \
+  --scores_ok_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/decoys/$TARGET"_decoys_scores_ok.csv" \
+  --out_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/qc_report/decoys \
   --top_k 50 --bottom_k 50 \
   --high_thr 0.0 --low_thr -1.5
 '''
