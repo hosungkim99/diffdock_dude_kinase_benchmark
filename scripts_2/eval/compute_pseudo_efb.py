@@ -28,7 +28,7 @@ For each target, a score CSV containing at least:
 Typical use
 -----------
 python compute_pseudo_efb.py \
-  --dude_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
+  --dude_root ./dataset/DUD-E/dude_raw \
   --eval_subdir diffdock_2 \
   --score_csv_name diffdock_scores_rank1.csv \
   --score_col confidence \
@@ -36,7 +36,7 @@ python compute_pseudo_efb.py \
   --active_label 1 \
   --decoy_label 0 \
   --higher_is_better \
-  --out_summary_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/metrics_summary_all_diffdock_2.csv \
+  --out_summary_csv ./dataset/DUD-E/dude_raw/metrics_summary_all_diffdock_2.csv \
   --save_curves
 
 Notes
@@ -554,8 +554,8 @@ if __name__ == "__main__":
     main()
     
 '''
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/compute_pseudo_efb.py \
-  --dude_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
+python ./dataset/DUD-E/scripts_2/eval/compute_pseudo_efb.py \
+  --dude_root ./dataset/DUD-E/dude_raw \
   --eval_subdir diffdock_2 \
   --score_csv_name diffdock_scores_rank1.csv \
   --score_col score \
@@ -563,6 +563,6 @@ python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/compute_pseudo_e
   --active_label 1 \
   --decoy_label 0 \
   --higher_is_better \
-  --out_summary_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/metrics_summary_all_diffdock_2.csv \
+  --out_summary_csv ./dataset/DUD-E/dude_raw/metrics_summary_all_diffdock_2.csv \
   --save_curves
 '''
