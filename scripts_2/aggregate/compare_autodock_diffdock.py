@@ -252,7 +252,7 @@ if __name__ == "__main__":
     
 
 '''
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/compare_autodock_diffdock.py \
-  --input /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/compare_autodock/metric_for_compare_AutoDock.csv \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/compare_autodock
+python ./dataset/DUD-E/scripts_2/aggregate/compare_autodock_diffdock.py \
+  --input ./dataset/DUD-E/aggregate_exports/compare_autodock/metric_for_compare_AutoDock.csv \
+  --out_dir ./dataset/DUD-E/aggregate_exports/compare_autodock
 '''
