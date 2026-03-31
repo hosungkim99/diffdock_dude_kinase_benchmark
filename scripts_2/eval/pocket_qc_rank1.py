@@ -97,20 +97,20 @@ if __name__ == "__main__":
 
 # (A) active-only QC: *_actives_scores_ok.csv 기반 Top100 (confidence)
 TARGET="mp2k1"
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/pocket_qc_rank1.py \
-  --target_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET \
+python ./dataset/DUD-E/scripts_2/eval/pocket_qc_rank1.py \
+  --target_dir ./dataset/DUD-E/dude_raw/$TARGET \
   --mode actives_only \
-  --actives_scores_ok_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/actives/${TARGET}_actives_scores_ok.csv \
-  --results_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results \
-  --outdir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/QC_pocket_rank1_actives_only \
+  --actives_scores_ok_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/actives/${TARGET}_actives_scores_ok.csv \
+  --results_root ./dataset/DUD-E/dude_raw/$TARGET/results \
+  --outdir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/QC_pocket_rank1_actives_only \
   --topk 100
 
 # (B) mixed QC: metrics_rank1/ranking.csv 기반 Top100 (actives+decoys)
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/pocket_qc_rank1.py \
-  --target_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET \
+python ./dataset/DUD-E/scripts_2/eval/pocket_qc_rank1.py \
+  --target_dir ./dataset/DUD-E/dude_raw/$TARGET \
   --mode mixed \
-  --ranking_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/metrics_rank1/ranking.csv \
-  --results_root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results \
-  --outdir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/QC_pocket_rank1_mixed \
+  --ranking_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/metrics_rank1/ranking.csv \
+  --results_root ./dataset/DUD-E/dude_raw/$TARGET/results \
+  --outdir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/QC_pocket_rank1_mixed \
   --topk 100
 """
