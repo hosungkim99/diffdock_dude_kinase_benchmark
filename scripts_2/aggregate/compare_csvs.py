@@ -494,17 +494,17 @@ if __name__ == "__main__":
         
 '''
 success vs all-failure
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/compare_csvs.py \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/success_cases.csv success \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/failure_and_skipped_cases.csv all_failure \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/success_all_fail_compare \
+python ./dataset/DUD-E/scripts_2/aggregate/compare_csvs.py \
+  --csv ./dataset/DUD-E/aggregate_exports/success_cases.csv success \
+  --csv ./dataset/DUD-E/aggregate_exports/failure_and_skipped_cases.csv all_failure \
+  --out_dir ./dataset/DUD-E/aggregate_exports/success_all_fail_compare \
   --verbose
 
 failure vs skip-test vs skip-conf
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/compare_csvs.py \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/failure_cases.csv failure \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/skipped_test_dataset_cases.csv skip_test \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/skipped_confidence_dataset_cases.csv skip_conf \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/compare_failure_cases \
+python ./dataset/DUD-E/scripts_2/aggregate/compare_csvs.py \
+  --csv ./dataset/DUD-E/aggregate_exports/failure_cases.csv failure \
+  --csv ./dataset/DUD-E/aggregate_exports/skipped_test_dataset_cases.csv skip_test \
+  --csv ./dataset/DUD-E/aggregate_exports/skipped_confidence_dataset_cases.csv skip_conf \
+  --out_dir ./dataset/DUD-E/aggregate_exports/compare_failure_cases \
   --verbose
 '''
