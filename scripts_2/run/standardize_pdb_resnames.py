@@ -53,14 +53,14 @@ if __name__ == "__main__":
 
 '''
 실행 예시
-cd /home/deepfold/users/hosung/dataset/DUD-E
+cd ./dataset/DUD-E
 TARGET="csf1r"
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/standardize_pdb_resnames.py \
-    --pdb /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/receptor.pdb
+python ./dataset/DUD-E/scripts_2/run/standardize_pdb_resnames.py \
+    --pdb ./dataset/DUD-E/dude_raw/$TARGET/receptor.pdb
     
 HETATM 제외하고 실행
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/standardize_pdb_resnames.py \
-    --pdb /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/receptor.pdb \
+python ./dataset/DUD-E/scripts_2/run/standardize_pdb_resnames.py \
+    --pdb ./dataset/DUD-E/dude_raw/$TARGET/receptor.pdb \
     --no-hetatm
 
 예상 출력
