@@ -52,11 +52,11 @@ if __name__ == "__main__":
 
 '''
 TARGET="vgfr2"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/eval/qc_rank1_bundle.py \
-  --scores_csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/diffdock_scores_rank1.csv \
-  --metrics_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/metrics_rank1 \
-  --outdir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/qc_rank1_bundle \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/eval/qc_rank1_bundle.py \
+  --scores_csv ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/diffdock_scores_rank1.csv \
+  --metrics_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/metrics_rank1 \
+  --outdir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/qc_rank1_bundle \
   --topk 100
 
 '''
