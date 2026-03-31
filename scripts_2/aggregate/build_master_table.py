@@ -6,7 +6,7 @@ from pathlib import Path
 
 # repo root에서 실행한다고 가정하면 src import가 되지만,
 # 환경에 따라 안 되면 PYTHONPATH를 DUD-E 루트로 잡아야 한다.
-# 예: export PYTHONPATH=/home/deepfold/users/hosung/dataset/DUD-E:$PYTHONPATH
+# 예: export PYTHONPATH=./dataset/DUD-E:$PYTHONPATH
 from src.aggregate.master import build_master_table, MasterTableConfig
 
 
@@ -63,14 +63,14 @@ if __name__ == "__main__":
     
     
 '''
-cd /home/deepfold/users/hosung/dataset/DUD-E
-export PYTHONPATH=/home/deepfold/users/hosung/dataset/DUD-E:$PYTHONPATH
+cd ./dataset/DUD-E
+export PYTHONPATH=./dataset/DUD-E:$PYTHONPATH
 
-DUDE_ROOT=/home/deepfold/users/hosung/dataset/DUD-E/dude_raw
+DUDE_ROOT=./dataset/DUD-E/dude_raw
 TARGET="mp2k1"
 EVAL=$DUDE_ROOT/$TARGET/eval/diffdock_2
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/build_master_table.py \
+python ./dataset/DUD-E/scripts_2/aggregate/build_master_table.py \
   --dude_root $DUDE_ROOT \
   --target $TARGET \
   --scores_csv $EVAL/diffdock_scores_rank1.csv \
