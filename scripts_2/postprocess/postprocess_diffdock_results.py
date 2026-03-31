@@ -78,13 +78,13 @@ if __name__ == "__main__":
 실행 예시
 TARGET="abl1"
 SPLIT="actives"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/postprocess/postprocess_diffdock_results.py \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/postprocess/postprocess_diffdock_results.py \
   --target $TARGET \
   --split $SPLIT \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/$TARGET"_"$SPLIT".csv" \
-  --results_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/results/$SPLIT \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/$SPLIT \
+  --csv ./dataset/DUD-E/dude_raw/$TARGET/$TARGET"_"$SPLIT".csv" \
+  --results_dir ./dataset/DUD-E/dude_raw/$TARGET/results/$SPLIT \
+  --out_dir ./dataset/DUD-E/dude_raw/$TARGET/eval/diffdock_2/$SPLIT \
   --max_rank 10
 
 '''
