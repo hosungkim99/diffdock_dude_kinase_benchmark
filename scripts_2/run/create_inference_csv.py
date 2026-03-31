@@ -48,9 +48,9 @@ if __name__ == "__main__":
 '''
 실행 예시
 TARGET="akt1"
-cd /home/deepfold/users/hosung/dataset/DUD-E
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/run/create_inference_csv.py \
-    --root /home/deepfold/users/hosung/dataset/DUD-E/dude_raw \
+cd ./dataset/DUD-E
+python ./dataset/DUD-E/scripts_2/run/create_inference_csv.py \
+    --root ./dataset/DUD-E/dude_raw \
     --target $TARGET
 
 출력
