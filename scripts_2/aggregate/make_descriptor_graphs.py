@@ -211,7 +211,7 @@ if __name__ == "__main__":
     main()
     
 '''
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/make_descriptor_graphs.py \
-  --csv /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/compare_failure_cases/descriptor_tests.csv \
-  --out_dir /home/deepfold/users/hosung/dataset/DUD-E/aggregate_exports/compare_failure_cases/graphs
+python ./dataset/DUD-E/scripts_2/aggregate/make_descriptor_graphs.py \
+  --csv ./dataset/DUD-E/aggregate_exports/compare_failure_cases/descriptor_tests.csv \
+  --out_dir ./dataset/DUD-E/aggregate_exports/compare_failure_cases/graphs
 '''
