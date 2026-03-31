@@ -464,10 +464,10 @@ if __name__ == "__main__":
     main()
     
 '''
-DUDE_ROOT="/home/deepfold/users/hosung/dataset/DUD-E/dude_raw"
+DUDE_ROOT="./dataset/DUD-E/dude_raw"
 EVAL_SUBDIR="diffdock_2"
 
-python /home/deepfold/users/hosung/dataset/DUD-E/scripts_2/aggregate/build_metrics_summary2.py \
+python ./dataset/DUD-E/scripts_2/aggregate/build_metrics_summary2.py \
   --dude_root $DUDE_ROOT \
   --eval_subdir $EVAL_SUBDIR \
   --out_csv $DUDE_ROOT/metrics_summary_all_${EVAL_SUBDIR}.csv \
