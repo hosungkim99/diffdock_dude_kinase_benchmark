@@ -21,8 +21,9 @@ This project is designed not merely to run DiffDock, but to provide a **rigorous
 
 - 빠른 시작 가이드: `docs/00_getting_started.md`
 - 파이프라인 스크립트/수식 레퍼런스: `docs/08_pipeline_script_reference.md`
+- `src` 구현 모듈 레퍼런스: `docs/09_src_module_reference.md`
 
-벤치마크 실행 전 위 두 문서를 먼저 읽는 것을 권장합니다.
+벤치마크 실행 전 위 문서들을 먼저 읽는 것을 권장합니다.
 
 # 1. Project Overview
 
