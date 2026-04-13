@@ -133,7 +133,6 @@ bash scripts_2/run/run_pipeline.sh
 ## 7) 권장 문서 읽기 순서
 
 1. `docs/02_pipeline_architecture.md` (전체 구조)
-2. `docs/08_pipeline_script_reference.md` (스크립트별 I/O, 실행 흐름)
-3. `docs/09_src_module_reference.md` (`src` 구현 모듈 설명)
-4. `docs/03_metric_definition2.md` (지표 정의)
-5. `docs/05_calibration_analysis.md` (캘리브레이션 해석)
+2. `docs/08_pipeline_script_reference.md` (스크립트별 역할 + 수식)
+3. `docs/03_metric_definition2.md` (지표 정의)
+4. `docs/05_calibration_analysis.md` (캘리브레이션 해석)
